@@ -7,7 +7,7 @@
     "generate-verbs": "node scripts/generate-verbs.mjs",
     "generate-verbs:debug": "node scripts/generate-verbs.mjs --debug",
     "build": "node scripts/generate-verbs.mjs && next build",
-    "start": "next start",
+    "start": "node scripts/serve-export.mjs",
     "convert:verbs": "node scripts/convert-french-verbs.mjs",
     "lint": "eslint",
     "test": "vitest run",

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeInitScript } from "@/components/ThemeToggle";
+import frenchLogo from "../../french-logo.png";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,6 +17,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Language Tools",
   description: "Interactive language learning games",
+  icons: {
+    icon: frenchLogo.src,
+    shortcut: frenchLogo.src,
+    apple: frenchLogo.src,
+  },
 };
 
 export default function RootLayout({
