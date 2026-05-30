@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Language Tools icon</title>
+  <desc id="desc">A rounded tile with a French tricolor accent and a letter A for language practice.</desc>
+  <rect width="512" height="512" rx="112" fill="#f7f4eb" />
+  <rect x="72" y="72" width="368" height="368" rx="88" fill="#111827" />
+  <rect x="104" y="104" width="48" height="304" rx="24" fill="#0055a4" />
+  <rect x="152" y="104" width="48" height="304" rx="24" fill="#f7f4eb" />
+  <rect x="200" y="104" width="48" height="304" rx="24" fill="#ef4135" />
+  <path d="M312 132h38l98 248h-44l-21-56h-107l-21 56h-41l98-248zm-22 157h78l-39-104-39 104z" fill="#f7f4eb" />
+</svg>

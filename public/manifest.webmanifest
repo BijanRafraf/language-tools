@@ -1,0 +1,18 @@
+{
+  "name": "Language Tools",
+  "short_name": "Lang Tools",
+  "description": "Interactive language learning games you can install and use offline.",
+  "start_url": "/language-tools/conjugation",
+  "scope": "/language-tools/",
+  "display": "standalone",
+  "background_color": "#f7f4eb",
+  "theme_color": "#111827",
+  "icons": [
+    {
+      "src": "/language-tools/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

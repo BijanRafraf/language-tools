@@ -1,7 +1,6 @@
 'use client';
 
 import { useGameRound } from '@/hooks/useGameRound';
-import { ThemeToggle } from '@/components/ThemeToggle';
 import { ConjugationCard } from '@/components/game/ConjugationCard';
 import { AnswerInput } from '@/components/game/AnswerInput';
 import { FeedbackBanner } from '@/components/game/FeedbackBanner';
@@ -9,7 +8,6 @@ import { ScoreBar } from '@/components/game/ScoreBar';
 import { EndRoundButton } from '@/components/game/EndRoundButton';
 import { SettingsPanel } from '@/components/game/SettingsPanel';
 import { RoundSummary } from '@/components/game/summary/RoundSummary';
-import Link from 'next/link';
 
 export default function ConjugationPage() {
   const {
@@ -39,24 +37,13 @@ export default function ConjugationPage() {
 
   return (
     <div className="flex flex-1 flex-col bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-background/80 px-6 py-3 backdrop-blur">
-        <Link
-          href="/"
-          className="text-sm font-semibold text-foreground hover:text-muted-foreground transition-colors"
-        >
-          Language Tools
-        </Link>
-        <div className="flex items-center gap-3">
-          {isPlaying && (
-            <EndRoundButton onEndRound={endRound} />
-          )}
-          <ThemeToggle />
-        </div>
-      </header>
-
-      {/* Main */}
       <main className="flex flex-1 flex-col items-center justify-center p-6">
+        {isPlaying && (
+          <div className="mb-4 flex w-full max-w-md justify-end">
+            <EndRoundButton onEndRound={endRound} />
+          </div>
+        )}
+
         {phase === 'idle' && (
           <SettingsPanel
             onStart={startNewRound}
