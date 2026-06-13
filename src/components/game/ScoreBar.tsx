@@ -11,13 +11,13 @@ interface Props {
 
 export function ScoreBar({ streak, progressLabel, isIndefinite }: Props) {
   return (
-    <div className="flex w-full items-center justify-between">
-      <div className="flex items-center gap-1.5">
+    <div className="flex w-full items-center justify-between border-b border-border pb-3">
+      <div className="flex items-center gap-1.5 text-sm">
         <Flame
           className={cn(
             'size-4',
             streak > 0
-              ? 'text-orange-500'
+              ? 'text-accent-foreground'
               : 'text-muted-foreground/40'
           )}
         />
@@ -25,7 +25,7 @@ export function ScoreBar({ streak, progressLabel, isIndefinite }: Props) {
           className={cn(
             'tabular-nums text-sm font-semibold',
             streak > 0
-              ? 'text-orange-500'
+              ? 'text-accent-foreground'
               : 'text-muted-foreground/40'
           )}
         >
@@ -36,7 +36,7 @@ export function ScoreBar({ streak, progressLabel, isIndefinite }: Props) {
         )}
       </div>
       <span className="text-sm text-muted-foreground">
-        {isIndefinite ? '∞' : ''}{' '}
+        {isIndefinite ? 'Active loop ' : ''}
         <span className="font-medium text-foreground">{progressLabel}</span>
       </span>
     </div>

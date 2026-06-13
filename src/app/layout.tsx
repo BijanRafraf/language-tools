@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#111827",
+  themeColor: "#d6d3d1",
 };
 
 export default function RootLayout({
@@ -54,14 +54,14 @@ export default function RootLayout({
         <PwaRegistration />
         <AppHeader />
         <div className="flex flex-1 flex-col">{children}</div>
-        <footer className="border-t border-border bg-background/95 px-6 py-4 text-center text-sm text-muted-foreground backdrop-blur">
-          <p>
+        <footer className="border-t border-border/80 bg-background/90 px-6 py-5 text-center text-sm text-muted-foreground backdrop-blur">
+          <p className="mx-auto max-w-3xl leading-relaxed">
             French frequency data adapted from{' '}
             <a
               href="https://github.com/hermitdave/FrequencyWords"
               target="_blank"
               rel="noreferrer"
-              className="font-medium text-foreground underline underline-offset-4 transition-colors hover:text-muted-foreground"
+              className="font-medium text-foreground underline decoration-foreground/20 underline-offset-4 transition-colors hover:text-primary hover:decoration-primary"
             >
               hermitdave/FrequencyWords
             </a>{' '}
@@ -70,7 +70,7 @@ export default function RootLayout({
               href="https://creativecommons.org/licenses/by-sa/4.0/"
               target="_blank"
               rel="noreferrer"
-              className="font-medium text-foreground underline underline-offset-4 transition-colors hover:text-muted-foreground"
+              className="font-medium text-foreground underline decoration-foreground/20 underline-offset-4 transition-colors hover:text-primary hover:decoration-primary"
             >
               CC BY-SA 4.0
             </a>

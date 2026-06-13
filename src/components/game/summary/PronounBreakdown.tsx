@@ -48,17 +48,17 @@ export function PronounBreakdown({ results }: Props) {
   if (stats.length === 0) return null;
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-      <h2 className="mb-4 text-lg font-semibold text-foreground">
+    <div className="border border-border bg-card p-6 shadow-[0_8px_18px_rgba(76,5,25,0.12)]">
+      <h3 className="mb-4 text-xl font-bold text-foreground">
         By Pronoun
-      </h2>
+      </h3>
       <table className="w-full text-sm">
         <thead>
-          <tr className="text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">
+          <tr className="text-left text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
             <th className="pb-2 pr-4">Pronoun</th>
-            <th className="pb-2 pr-4 text-right text-green-600 dark:text-green-400">✓</th>
-            <th className="pb-2 pr-4 text-right text-amber-600 dark:text-amber-400">~</th>
-            <th className="pb-2 pr-4 text-right text-red-600 dark:text-red-400">✗</th>
+            <th className="pb-2 pr-4 text-right text-accent-foreground">✓</th>
+            <th className="pb-2 pr-4 text-right text-primary/80">~</th>
+            <th className="pb-2 pr-4 text-right text-destructive">✗</th>
             <th className="pb-2 text-right">Accuracy</th>
           </tr>
         </thead>
@@ -73,10 +73,10 @@ export function PronounBreakdown({ results }: Props) {
                 className={cn(
                   'py-2 text-right font-semibold tabular-nums',
                   s.accuracy >= 80
-                    ? 'text-green-600 dark:text-green-400'
+                    ? 'text-accent-foreground'
                     : s.accuracy >= 60
-                    ? 'text-amber-600 dark:text-amber-400'
-                    : 'text-red-600 dark:text-red-400'
+                    ? 'text-primary/80'
+                    : 'text-destructive'
                 )}
               >
                 {Math.round(s.accuracy)}%

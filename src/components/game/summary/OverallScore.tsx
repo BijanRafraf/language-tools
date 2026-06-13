@@ -10,11 +10,11 @@ interface Props {
 }
 
 const GRADE_COLORS: Record<string, string> = {
-  A: 'text-green-600 dark:text-green-400',
-  B: 'text-emerald-600 dark:text-emerald-400',
-  C: 'text-amber-600 dark:text-amber-400',
-  D: 'text-orange-600 dark:text-orange-400',
-  F: 'text-red-600 dark:text-red-400',
+  A: 'text-accent-foreground',
+  B: 'text-primary',
+  C: 'text-primary/80',
+  D: 'text-destructive/80',
+  F: 'text-destructive',
 };
 
 export function OverallScore({ results, longestStreak }: Props) {
@@ -29,15 +29,15 @@ export function OverallScore({ results, longestStreak }: Props) {
     total > 0 ? `${Math.round((n / total) * 100)}%` : '—';
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-      <h2 className="mb-4 text-lg font-semibold text-foreground">
+    <div className="border border-border bg-card p-6 shadow-[0_8px_18px_rgba(76,5,25,0.12)]">
+      <h3 className="mb-4 text-xl font-bold text-foreground">
         Overall Score
-      </h2>
-      <div className="flex items-center gap-6">
+      </h3>
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
         <div className="flex flex-col items-center">
           <span
             className={cn(
-              'text-6xl font-bold tabular-nums',
+              'font-heading text-6xl font-bold tabular-nums sm:text-7xl',
               GRADE_COLORS[grade]
             )}
           >
@@ -49,24 +49,24 @@ export function OverallScore({ results, longestStreak }: Props) {
         </div>
         <div className="flex flex-1 flex-col gap-3">
           <div className="grid grid-cols-3 gap-2 text-center text-sm">
-            <div className="rounded-lg bg-green-50 py-2 dark:bg-green-950/30">
-              <p className="font-semibold text-green-700 dark:text-green-400">
+            <div className="border border-border bg-secondary py-2">
+              <p className="font-semibold text-accent-foreground">
                 {correct}
               </p>
               <p className="text-xs text-muted-foreground">
                 Correct {pct(correct)}
               </p>
             </div>
-            <div className="rounded-lg bg-amber-50 py-2 dark:bg-amber-950/30">
-              <p className="font-semibold text-amber-700 dark:text-amber-400">
+            <div className="border border-border bg-secondary py-2">
+              <p className="font-semibold text-primary/80">
                 {nearMiss}
               </p>
               <p className="text-xs text-muted-foreground">
                 Near-miss {pct(nearMiss)}
               </p>
             </div>
-            <div className="rounded-lg bg-red-50 py-2 dark:bg-red-950/30">
-              <p className="font-semibold text-red-700 dark:text-red-400">
+            <div className="border border-border bg-secondary py-2">
+              <p className="font-semibold text-destructive">
                 {wrong}
               </p>
               <p className="text-xs text-muted-foreground">
@@ -86,10 +86,9 @@ export function OverallScore({ results, longestStreak }: Props) {
           </div>
         </div>
       </div>
-      {/* Score bar */}
       <div className="mt-4 h-2 w-full overflow-hidden rounded-full bg-muted">
         <div
-          className="h-full rounded-full bg-primary transition-all"
+          className="h-full rounded-full bg-accent transition-all"
           style={{ width: `${score}%` }}
         />
       </div>

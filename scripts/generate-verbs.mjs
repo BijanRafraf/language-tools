@@ -6,13 +6,41 @@
  * Run: node scripts/generate-verbs.mjs
  */
 
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const CSV_PATH = join(__dirname, '../src/data/languages/fr/data.csv');
-const OUT_PATH = join(__dirname, '../src/data/languages/fr/verbs.generated.json');
+const CSV_PATH  = join(__dirname, '../src/data/languages/fr/data.csv');
+const OUT_PATH  = join(__dirname, '../src/data/languages/fr/verbs.generated.json');
+const FREQ_PATH = join(__dirname, '../fr_full.txt');
+
+// ── Frequency lookup ────────────────────────────────────────────────────────
+
+/**
+ * Load a word-frequency file where each line is "word<space>count".
+ * Returns a Map<string, number> of word → raw corpus count.
+ * Returns an empty Map (silently) if the file does not exist.
+ */
+function loadFrequencies(filePath) {
+  if (!existsSync(filePath)) {
+    console.warn(`[generate-verbs] FREQ_PATH not found, falling back to CSV frequencies: ${filePath}`);
+    return new Map();
+  }
+  const map = new Map();
+  const lines = readFileSync(filePath, 'utf-8').split(/\r?\n/);
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    const spaceIdx = trimmed.lastIndexOf(' ');
+    if (spaceIdx === -1) continue;
+    const word  = trimmed.slice(0, spaceIdx).trim();
+    const count = Number.parseInt(trimmed.slice(spaceIdx + 1).trim(), 10);
+    if (word && Number.isFinite(count)) map.set(word, count);
+  }
+  console.log(`✓ Loaded ${map.size} frequency entries from ${filePath}`);
+  return map;
+}
 
 // ── CSV helpers ──────────────────────────────────────────────────────────────
 
@@ -85,6 +113,8 @@ function inferGroup(infinitive) {
 
 const DEBUG = process.argv.includes('--debug');
 
+const freqMap = loadFrequencies(FREQ_PATH);
+
 const raw   = readFileSync(CSV_PATH, 'utf-8');
 const lines = raw.split(/\r?\n/).filter(l => l.trim() !== '');
 const headers = splitLine(lines[0]).map((header) => header.trim());
@@ -139,8 +169,10 @@ for (let i = 1; i < lines.length; i++) {
   // Skip verbs with no usable conjugation data
   if (Object.keys(conjugations).length === 0) continue;
 
-  const parsedFrequency = Number.parseInt(row['frequency']?.trim() || '', 10);
-  const frequency = Number.isFinite(parsedFrequency) ? parsedFrequency : undefined;
+  // Prefer fr_full.txt corpus count; fall back to CSV 'frequency' column.
+  const csvFreq      = Number.parseInt(row['frequency']?.trim() || '', 10);
+  const csvFrequency = Number.isFinite(csvFreq) ? csvFreq : undefined;
+  const frequency    = freqMap.has(infinitive) ? freqMap.get(infinitive) : csvFrequency;
 
   verbs.push({
     infinitive,

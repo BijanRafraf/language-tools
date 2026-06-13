@@ -36,10 +36,26 @@ export default function ConjugationPage() {
   const isPlaying = phase === 'playing' || phase === 'feedback';
 
   return (
-    <div className="flex flex-1 flex-col bg-background">
-      <main className="flex flex-1 flex-col items-center justify-center p-6">
+    <div className="flex flex-1 px-4 py-8 sm:px-6 sm:py-12">
+      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col bg-card px-6 py-8 text-foreground shadow-[0_8px_18px_rgba(76,5,25,0.12)] sm:px-8 sm:py-10">
+        <div className="border-l-4 border-primary pl-6">
+          <section className="max-w-2xl space-y-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              Utility tool
+            </p>
+            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+              French Verb Conjugation
+            </h1>
+            <p className="max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
+              Configure a narrow practice set, answer quickly, and review weak spots without dashboard chrome getting in the way.
+            </p>
+          </section>
+
+          <hr className="my-6 border-0 border-t border-border" />
+
+          <section className="flex flex-1 flex-col items-center justify-center">
         {isPlaying && (
-          <div className="mb-4 flex w-full max-w-md justify-end">
+          <div className="mb-4 flex w-full max-w-xl justify-end">
             <EndRoundButton onEndRound={endRound} />
           </div>
         )}
@@ -52,7 +68,7 @@ export default function ConjugationPage() {
         )}
 
         {isPlaying && currentCard && (
-          <div className="flex w-full max-w-md flex-col gap-4">
+          <div className="flex w-full max-w-xl flex-col gap-4">
             <ScoreBar
               streak={streak}
               progressLabel={progressLabel}
@@ -94,6 +110,8 @@ export default function ConjugationPage() {
             onChangeSettings={resetGame}
           />
         )}
+          </section>
+        </div>
       </main>
     </div>
   );

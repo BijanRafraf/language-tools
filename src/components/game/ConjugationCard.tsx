@@ -55,7 +55,7 @@ export function ConjugationCard({ card, cardKey, outcome }: Props) {
   return (
     <motion.div
       animate={controls}
-      className="relative flex w-full flex-col items-center gap-6 rounded-2xl border border-border bg-card px-8 py-10 shadow-sm"
+      className="relative flex w-full flex-col items-center gap-6 border border-border bg-card px-8 py-10 text-center shadow-[0_8px_18px_rgba(76,5,25,0.12)]"
     >
       {outcome === 'correct' && (
         <motion.div
@@ -63,21 +63,21 @@ export function ConjugationCard({ card, cardKey, outcome }: Props) {
           initial={{ opacity: 0.45 }}
           animate={{ opacity: 0 }}
           transition={{ duration: 0.65, ease: 'easeOut' }}
-          className="pointer-events-none absolute inset-0 rounded-2xl bg-green-400/30"
+          className="pointer-events-none absolute inset-0 bg-accent/18"
         />
       )}
-      <span className="rounded-full bg-muted px-4 py-1 text-sm font-medium text-muted-foreground">
+      <span className="border border-border bg-secondary px-4 py-1 text-sm font-medium text-muted-foreground">
         {tenseLabelFor(card.tense)}
       </span>
       <div className="flex flex-col items-center gap-2 text-center">
-        <span className="text-5xl font-bold tracking-tight text-foreground">
+        <span className="font-heading text-5xl font-bold tracking-tight text-foreground sm:text-6xl">
           {card.pronoun}
         </span>
-        <span className="text-2xl font-light text-muted-foreground">
+        <span className="text-2xl font-semibold text-primary/85">
           {card.verb.infinitive}
         </span>
         {card.verb.english && (
-          <span className="text-sm italic text-muted-foreground/70">
+          <span className="text-sm italic text-muted-foreground">
             {card.verb.english}
           </span>
         )}

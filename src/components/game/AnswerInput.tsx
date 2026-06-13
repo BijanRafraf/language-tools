@@ -37,7 +37,7 @@ export function AnswerInput({
   };
 
   return (
-    <div className="flex w-full gap-2">
+    <div className="flex w-full flex-col gap-3 sm:flex-row">
       <input
         ref={inputRef}
         type="text"
@@ -51,9 +51,9 @@ export function AnswerInput({
         spellCheck={false}
         placeholder={placeholder}
         className={cn(
-          'flex-1 rounded-lg border border-border bg-background px-4 py-3 text-lg text-foreground outline-none ring-offset-background transition-colors',
-          'placeholder:text-muted-foreground/50',
-          'focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50',
+          'flex-1 border border-border bg-input px-4 py-3 text-lg text-foreground outline-none ring-offset-background transition-colors',
+          'placeholder:text-muted-foreground/70',
+          'focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/40',
           'disabled:cursor-not-allowed disabled:opacity-60'
         )}
       />
@@ -62,8 +62,8 @@ export function AnswerInput({
         onClick={() => !disabled && value.trim() && onSubmit(value)}
         disabled={disabled || !value.trim()}
         className={cn(
-          'rounded-lg border border-transparent bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors',
-          'hover:bg-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+          'rounded-r-2xl rounded-l-md border border-primary bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_8px_18px_rgba(76,5,25,0.12)] transition-colors',
+          'hover:bg-[#881337] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
           'disabled:pointer-events-none disabled:opacity-50'
         )}
       >

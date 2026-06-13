@@ -41,7 +41,7 @@ function CheckboxRow({
   onChange: () => void;
 }) {
   return (
-    <label className="flex cursor-pointer items-center gap-2.5 select-none">
+    <label className="flex cursor-pointer items-center gap-3 border-b border-border/70 py-2.5 select-none transition-colors hover:text-primary">
       <input
         type="checkbox"
         checked={checked}
@@ -62,19 +62,18 @@ export function SettingsPanel({ onStart, deckAvailable }: Props) {
   }
 
   return (
-    <div className="w-full max-w-md space-y-8 rounded-2xl border border-border bg-card p-8 shadow-sm">
+    <div className="w-full max-w-xl space-y-8 border border-border bg-card p-6 shadow-[0_8px_18px_rgba(76,5,25,0.12)] sm:p-8">
       <div>
-        <h2 className="text-xl font-semibold text-foreground">
+        <h2 className="text-xl font-bold text-foreground">
           Game Settings
         </h2>
-        <p className="mt-1 text-sm text-muted-foreground">
-          French verb conjugation
+        <p className="mt-1 max-w-lg text-sm leading-6 text-muted-foreground">
+          Choose the tense, verb group, and round size, then start a focused drill.
         </p>
       </div>
 
-      {/* Tenses */}
       <fieldset>
-        <legend className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
           Tenses
         </legend>
         <div className="space-y-2">
@@ -91,12 +90,11 @@ export function SettingsPanel({ onStart, deckAvailable }: Props) {
         </div>
       </fieldset>
 
-      {/* Verb groups */}
       <fieldset>
-        <legend className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
           Verb groups
         </legend>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid gap-x-6 gap-y-1 sm:grid-cols-2">
           {VERB_GROUPS.map(({ key, label }) => (
             <CheckboxRow
               key={key}
@@ -112,12 +110,11 @@ export function SettingsPanel({ onStart, deckAvailable }: Props) {
         </div>
       </fieldset>
 
-      {/* Pronouns */}
       <fieldset>
-        <legend className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
           Pronouns
         </legend>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid gap-x-6 gap-y-1 sm:grid-cols-2">
           {PRONOUNS.map((p) => (
             <CheckboxRow
               key={p}
@@ -131,22 +128,21 @@ export function SettingsPanel({ onStart, deckAvailable }: Props) {
         </div>
       </fieldset>
 
-      {/* Round size */}
       <fieldset>
-        <legend className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
           Round size
         </legend>
-        <div className="flex gap-2">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
           {ROUND_SIZES.map(({ value, label }) => (
             <button
               key={String(value)}
               type="button"
               onClick={() => updateSettings({ roundSize: value })}
               className={cn(
-                'flex-1 rounded-lg border px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                'rounded-r-2xl rounded-l-md border px-3 py-2 text-sm font-semibold shadow-[0_8px_18px_rgba(76,5,25,0.12)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                 roundSize === value
-                  ? 'border-primary bg-primary text-primary-foreground'
-                  : 'border-border bg-background text-foreground hover:bg-muted'
+                  ? 'border-accent bg-accent text-accent-foreground'
+                  : 'border-border bg-secondary text-foreground hover:bg-muted'
               )}
             >
               {label}
@@ -156,7 +152,7 @@ export function SettingsPanel({ onStart, deckAvailable }: Props) {
       </fieldset>
 
       {!deckAvailable && (
-        <p className="text-sm text-destructive">
+        <p className="border border-destructive/20 bg-destructive/8 px-4 py-3 text-sm text-destructive">
           No cards match the current filters. Select at least one tense,
           pronoun, and verb group.
         </p>
@@ -171,7 +167,7 @@ export function SettingsPanel({ onStart, deckAvailable }: Props) {
           pronouns.length === 0 ||
           verbGroups.length === 0
         }
-        className="w-full rounded-lg bg-primary py-3 text-base font-semibold text-primary-foreground transition-colors hover:bg-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+        className="w-full rounded-r-2xl rounded-l-md border border-primary bg-primary py-3 text-base font-semibold text-primary-foreground shadow-[0_8px_18px_rgba(76,5,25,0.12)] transition-colors hover:bg-[#881337] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
       >
         Start
       </button>

@@ -40,28 +40,28 @@ export function MissedVerbs({ results }: Props) {
   const missed = computeMissed(results);
   if (missed.length === 0) {
     return (
-      <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-        <h2 className="mb-2 text-lg font-semibold text-foreground">
+      <div className="border border-border bg-card p-6 shadow-[0_8px_18px_rgba(76,5,25,0.12)]">
+        <h3 className="mb-2 text-xl font-bold text-foreground">
           Verbs to Review
-        </h2>
-        <p className="text-sm text-muted-foreground">
-          No mistakes — perfect round! 🎉
+        </h3>
+        <p className="text-sm leading-6 text-muted-foreground">
+          No mistakes this round. The full deck stayed clean.
         </p>
       </div>
     );
   }
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-      <h2 className="mb-4 text-lg font-semibold text-foreground">
+    <div className="border border-border bg-card p-6 shadow-[0_8px_18px_rgba(76,5,25,0.12)]">
+      <h3 className="mb-4 text-xl font-bold text-foreground">
         Verbs to Review
         <span className="ml-2 text-sm font-normal text-muted-foreground">
           ({missed.length} verb{missed.length !== 1 ? 's' : ''})
         </span>
-      </h2>
+      </h3>
       <div className="space-y-4">
         {missed.map((entry) => (
-          <div key={entry.infinitive} className="space-y-1.5">
+          <div key={entry.infinitive} className="space-y-2 border-b border-border/70 pb-4 last:border-b-0 last:pb-0">
             <div className="flex items-baseline gap-2">
               <span className="font-semibold text-foreground">
                 {entry.infinitive}
@@ -78,8 +78,8 @@ export function MissedVerbs({ results }: Props) {
                   key={i}
                   className={
                     m.outcome === 'near-miss'
-                      ? 'inline-flex items-center gap-1 rounded-md border border-amber-200 bg-amber-50 px-2 py-0.5 text-xs dark:border-amber-800 dark:bg-amber-950/30'
-                      : 'inline-flex items-center gap-1 rounded-md border border-red-200 bg-red-50 px-2 py-0.5 text-xs dark:border-red-800 dark:bg-red-950/30'
+                      ? 'inline-flex items-center gap-1 border border-primary/15 bg-secondary px-2 py-1 text-xs'
+                      : 'inline-flex items-center gap-1 border border-destructive/20 bg-destructive/8 px-2 py-1 text-xs'
                   }
                 >
                   <span className="font-medium text-foreground/80">
