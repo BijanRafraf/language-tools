@@ -48,23 +48,23 @@ export function PronounBreakdown({ results }: Props) {
   if (stats.length === 0) return null;
 
   return (
-    <div className="border border-border bg-card p-6 shadow-[0_8px_18px_rgba(76,5,25,0.12)]">
-      <h3 className="mb-4 text-xl font-bold text-foreground">
+    <div className="border border-stone-300 dark:border-stone-600 bg-stone-50 dark:bg-stone-800 p-6 shadow-panel">
+        <h3 className="mb-4 text-xl font-bold text-rose-950 dark:text-rose-100">
         By Pronoun
       </h3>
       <table className="w-full text-sm">
         <thead>
-          <tr className="text-left text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+          <tr className="text-left text-xs font-medium uppercase tracking-[0.2em] text-stone-400">
             <th className="pb-2 pr-4">Pronoun</th>
-            <th className="pb-2 pr-4 text-right text-accent-foreground">✓</th>
-            <th className="pb-2 pr-4 text-right text-primary/80">~</th>
-            <th className="pb-2 pr-4 text-right text-destructive">✗</th>
+            <th className="pb-2 pr-4 text-right text-cyan-950 dark:text-cyan-100">✓</th>
+            <th className="pb-2 pr-4 text-right text-rose-950/80 dark:text-rose-200/80">~</th>
+            <th className="pb-2 pr-4 text-right text-rose-600 dark:text-rose-400">✗</th>
             <th className="pb-2 text-right">Accuracy</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-border">
           {stats.map((s) => (
-            <tr key={s.pronoun} className="text-foreground">
+            <tr key={s.pronoun} className="text-rose-950 dark:text-rose-100">
               <td className="py-2 pr-4 font-medium">{s.pronoun}</td>
               <td className="py-2 pr-4 text-right tabular-nums">{s.correct}</td>
               <td className="py-2 pr-4 text-right tabular-nums">{s.nearMiss}</td>
@@ -73,10 +73,10 @@ export function PronounBreakdown({ results }: Props) {
                 className={cn(
                   'py-2 text-right font-semibold tabular-nums',
                   s.accuracy >= 80
-                    ? 'text-accent-foreground'
+                    ? 'text-cyan-950 dark:text-cyan-100'
                     : s.accuracy >= 60
-                    ? 'text-primary/80'
-                    : 'text-destructive'
+                    ? 'text-rose-950/80 dark:text-rose-200/80'
+                    : 'text-rose-600 dark:text-rose-400'
                 )}
               >
                 {Math.round(s.accuracy)}%

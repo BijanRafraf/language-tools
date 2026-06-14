@@ -104,9 +104,9 @@ export function AnswerInput({
           spellCheck={false}
           placeholder={placeholder}
           className={cn(
-            'flex-1 border border-border bg-input px-4 py-3 text-lg text-foreground outline-none ring-offset-background transition-colors',
-            'placeholder:text-muted-foreground/70',
-            'focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/40',
+            'flex-1 border border-stone-300 dark:border-stone-600 bg-stone-100 dark:bg-stone-700 px-4 py-3 text-lg text-rose-950 dark:text-rose-100 outline-none ring-offset-background transition-colors',
+            'placeholder:text-stone-400/70 dark:placeholder:text-stone-400/70',
+            'focus-visible:border-cyan-700 dark:focus-visible:border-cyan-400 focus-visible:ring-2 focus-visible:ring-cyan-700/40 dark:focus-visible:ring-cyan-400/40',
             'disabled:cursor-not-allowed disabled:opacity-60'
           )}
         />
@@ -115,8 +115,8 @@ export function AnswerInput({
           onClick={() => !disabled && value.trim() && onSubmit(value)}
           disabled={disabled || !value.trim()}
           className={cn(
-            'rounded-r-2xl rounded-l-md border border-primary bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_8px_18px_rgba(76,5,25,0.12)] transition-colors',
-            'hover:bg-[#881337] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+            'rounded-r-2xl rounded-l-md border border-rose-950 dark:border-rose-200 bg-rose-950 dark:bg-rose-200 px-5 py-3 text-sm font-semibold text-rose-50 dark:text-rose-950 shadow-panel transition-colors',
+            'hover:bg-rose-900 dark:hover:bg-rose-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-700 dark:focus-visible:ring-cyan-400',
             'disabled:pointer-events-none disabled:opacity-50'
           )}
         >
@@ -139,12 +139,12 @@ export function AnswerInput({
                 applyAccent(char);
               }}
               className={cn(
-                'flex h-6 items-center gap-0.5 rounded border border-border/50 bg-muted/50 px-1.5',
-                'text-sm text-foreground/70 transition-colors duration-100',
-                'hover:border-border/80 hover:bg-muted hover:text-foreground'
+                'flex h-6 items-center gap-0.5 rounded-sm border border-stone-300/50 dark:border-stone-600/50 bg-stone-100/50 dark:bg-stone-700/50 px-1.5',
+                'text-sm text-rose-950/70 dark:text-rose-100/70 transition-colors duration-100',
+                'hover:border-stone-300/80 dark:hover:border-stone-600/80 hover:bg-stone-100 dark:hover:bg-stone-700 hover:text-rose-950 dark:hover:text-rose-100'
               )}
             >
-              <span className="text-[9px] font-semibold leading-none text-muted-foreground/50">
+              <span className="text-[9px] font-semibold leading-none text-stone-400/50">
                 {i + 1}
               </span>
               <span className="ml-0.5">{char}</span>

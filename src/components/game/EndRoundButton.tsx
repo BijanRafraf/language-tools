@@ -11,7 +11,7 @@ export function EndRoundButton({ onEndRound }: Props) {
     <button
       type="button"
       onClick={onEndRound}
-      className="flex items-center gap-1.5 rounded-r-2xl rounded-l-md border border-border bg-secondary px-3 py-2 text-sm font-semibold text-muted-foreground shadow-[0_8px_18px_rgba(76,5,25,0.12)] transition-colors hover:border-destructive/40 hover:text-destructive focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      className="flex items-center gap-1.5 rounded-r-2xl rounded-l-md border border-stone-300 dark:border-stone-600 bg-stone-100 dark:bg-stone-700 px-3 py-2 text-sm font-semibold text-stone-400 shadow-panel transition-colors hover:border-rose-600/40 dark:hover:border-rose-600/40 hover:text-rose-600 dark:hover:text-rose-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-700 dark:focus-visible:ring-cyan-400"
     >
       <StopCircle className="size-4" />
       End round

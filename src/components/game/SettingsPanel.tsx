@@ -43,14 +43,14 @@ function CheckboxRow({
   onChange: () => void;
 }) {
   return (
-    <label className="flex cursor-pointer items-center gap-3 border-b border-border/70 py-2.5 select-none transition-colors hover:text-primary">
+    <label className="flex cursor-pointer items-center gap-3 border-b border-stone-300/70 dark:border-stone-600/70 py-2.5 select-none transition-colors hover:text-rose-950 dark:hover:text-rose-200">
       <input
         type="checkbox"
         checked={checked}
         onChange={onChange}
-        className="size-4 accent-primary"
+        className="size-4 accent-rose-950 dark:accent-rose-200"
       />
-      <span className="text-sm text-foreground">{label}</span>
+      <span className="text-sm text-rose-950 dark:text-rose-100">{label}</span>
     </label>
   );
 }
@@ -64,18 +64,18 @@ export function SettingsPanel({ onStart, deckAvailable }: Props) {
   }
 
   return (
-    <div className="w-full max-w-xl space-y-8 border border-border bg-card p-6 shadow-[0_8px_18px_rgba(76,5,25,0.12)] sm:p-8">
+    <div className="w-full max-w-xl space-y-8 border border-stone-300 dark:border-stone-600 bg-stone-50 dark:bg-stone-800 p-6 shadow-panel sm:p-8">
       <div>
-        <h2 className="text-xl font-bold text-foreground">
+        <h2 className="text-xl font-bold text-rose-950 dark:text-rose-100">
           Game Settings
         </h2>
-        <p className="mt-1 max-w-lg text-sm leading-6 text-muted-foreground">
+        <p className="mt-1 max-w-lg text-sm leading-6 text-stone-400">
           Choose the tense, verb group, and round size, then start a focused drill.
         </p>
       </div>
 
       <fieldset>
-        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-stone-400">
           Tenses
         </legend>
         <div className="space-y-2">
@@ -93,7 +93,7 @@ export function SettingsPanel({ onStart, deckAvailable }: Props) {
       </fieldset>
 
       <fieldset>
-        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-stone-400">
           Verb groups
         </legend>
         <div className="grid gap-x-6 gap-y-1 sm:grid-cols-2">
@@ -113,7 +113,7 @@ export function SettingsPanel({ onStart, deckAvailable }: Props) {
       </fieldset>
 
       <fieldset>
-        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-stone-400">
           Pronouns
         </legend>
         <div className="grid gap-x-6 gap-y-1 sm:grid-cols-2">
@@ -131,7 +131,7 @@ export function SettingsPanel({ onStart, deckAvailable }: Props) {
       </fieldset>
 
       <fieldset>
-        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-stone-400">
           Round size
         </legend>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
@@ -141,10 +141,10 @@ export function SettingsPanel({ onStart, deckAvailable }: Props) {
               type="button"
               onClick={() => updateSettings({ roundSize: value })}
               className={cn(
-                'rounded-r-2xl rounded-l-md border px-3 py-2 text-sm font-semibold shadow-[0_8px_18px_rgba(76,5,25,0.12)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                'rounded-r-2xl rounded-l-md border px-3 py-2 text-sm font-semibold shadow-panel transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-700 dark:focus-visible:ring-cyan-400',
                 roundSize === value
-                  ? 'border-accent bg-accent text-accent-foreground'
-                  : 'border-border bg-secondary text-foreground hover:bg-muted'
+                  ? 'border-sky-50 dark:border-cyan-900 bg-sky-50 dark:bg-cyan-900 text-cyan-950 dark:text-cyan-100'
+                  : 'border-stone-300 dark:border-stone-600 bg-stone-100 dark:bg-stone-700 text-rose-950 dark:text-rose-100 hover:bg-stone-100 dark:hover:bg-stone-700'
               )}
             >
               {label}
@@ -154,7 +154,7 @@ export function SettingsPanel({ onStart, deckAvailable }: Props) {
       </fieldset>
 
       {!deckAvailable && (
-        <p className="border border-destructive/20 bg-destructive/8 px-4 py-3 text-sm text-destructive">
+        <p className="border border-rose-600/20 dark:border-rose-600/20 bg-rose-600/8 dark:bg-rose-600/8 px-4 py-3 text-sm text-rose-600 dark:text-rose-400">
           No cards match the current filters. Select at least one tense,
           pronoun, and verb group.
         </p>
@@ -169,7 +169,7 @@ export function SettingsPanel({ onStart, deckAvailable }: Props) {
           pronouns.length === 0 ||
           verbGroups.length === 0
         }
-        className="w-full rounded-r-2xl rounded-l-md border border-primary bg-primary py-3 text-base font-semibold text-primary-foreground shadow-[0_8px_18px_rgba(76,5,25,0.12)] transition-colors hover:bg-[#881337] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+        className="w-full rounded-r-2xl rounded-l-md border border-rose-950 dark:border-rose-200 bg-rose-950 dark:bg-rose-200 py-3 text-base font-semibold text-rose-50 dark:text-rose-950 shadow-panel transition-colors hover:bg-rose-900 dark:hover:bg-rose-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-700 dark:focus-visible:ring-cyan-400 disabled:pointer-events-none disabled:opacity-50"
       >
         Start
       </button>

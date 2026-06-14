@@ -40,11 +40,11 @@ export function MissedVerbs({ results }: Props) {
   const missed = computeMissed(results);
   if (missed.length === 0) {
     return (
-      <div className="border border-border bg-card p-6 shadow-[0_8px_18px_rgba(76,5,25,0.12)]">
-        <h3 className="mb-2 text-xl font-bold text-foreground">
+      <div className="border border-stone-300 dark:border-stone-600 bg-stone-50 dark:bg-stone-800 p-6 shadow-panel">
+        <h3 className="mb-2 text-xl font-bold text-rose-950 dark:text-rose-100">
           Verbs to Review
         </h3>
-        <p className="text-sm leading-6 text-muted-foreground">
+        <p className="text-sm leading-6 text-stone-400">
           No mistakes this round. The full deck stayed clean.
         </p>
       </div>
@@ -52,22 +52,22 @@ export function MissedVerbs({ results }: Props) {
   }
 
   return (
-    <div className="border border-border bg-card p-6 shadow-[0_8px_18px_rgba(76,5,25,0.12)]">
-      <h3 className="mb-4 text-xl font-bold text-foreground">
+    <div className="border border-stone-300 dark:border-stone-600 bg-stone-50 dark:bg-stone-800 p-6 shadow-panel">
+      <h3 className="mb-4 text-xl font-bold text-rose-950 dark:text-rose-100">
         Verbs to Review
-        <span className="ml-2 text-sm font-normal text-muted-foreground">
+        <span className="ml-2 text-sm font-normal text-stone-400">
           ({missed.length} verb{missed.length !== 1 ? 's' : ''})
         </span>
       </h3>
       <div className="space-y-4">
         {missed.map((entry) => (
-          <div key={entry.infinitive} className="space-y-2 border-b border-border/70 pb-4 last:border-b-0 last:pb-0">
+          <div key={entry.infinitive} className="space-y-2 border-b border-stone-300/70 dark:border-stone-600/70 pb-4 last:border-b-0 last:pb-0">
             <div className="flex items-baseline gap-2">
-              <span className="font-semibold text-foreground">
+              <span className="font-semibold text-rose-950 dark:text-rose-100">
                 {entry.infinitive}
               </span>
               {entry.english && (
-                <span className="text-xs italic text-muted-foreground">
+                <span className="text-xs italic text-stone-400">
                   {entry.english}
                 </span>
               )}
@@ -82,11 +82,11 @@ export function MissedVerbs({ results }: Props) {
                       : 'inline-flex items-center gap-1 border border-destructive/20 bg-destructive/8 px-2 py-1 text-xs'
                   }
                 >
-                  <span className="font-medium text-foreground/80">
+                  <span className="font-medium text-rose-950/80 dark:text-rose-100/80">
                     {m.pronoun}
                   </span>
-                  <span className="text-muted-foreground">→</span>
-                  <span className="font-semibold text-foreground">
+                  <span className="text-stone-400">→</span>
+                  <span className="font-semibold text-rose-950 dark:text-rose-100">
                     {m.correct}
                   </span>
                 </span>

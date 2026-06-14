@@ -37,21 +37,17 @@ export default function ConjugationPage() {
 
   return (
     <div className="flex flex-1 px-4 py-8 sm:px-6 sm:py-12">
-      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col bg-card px-6 py-8 text-foreground shadow-[0_8px_18px_rgba(76,5,25,0.12)] sm:px-8 sm:py-10">
-        <div className="border-l-4 border-primary pl-6">
+      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col bg-stone-50 dark:bg-stone-800 px-6 py-8 text-rose-950 dark:text-rose-100 shadow-panel sm:px-8 sm:py-10">
+        <div className="border-l-4 border-rose-950 dark:border-rose-200 pl-6">
           <section className="max-w-2xl space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-              Utility tool
-            </p>
-            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              French Verb Conjugation
-            </h1>
-            <p className="max-w-xl text-sm leading-6 text-muted-foreground sm:text-base">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-400">Utility tool</p>
+            <h1 className="text-4xl font-bold tracking-tight text-rose-950 dark:text-rose-100 sm:text-5xl">French Verb Conjugation</h1>
+            <p className="max-w-xl text-sm leading-6 text-stone-400 sm:text-base">
               Configure a narrow practice set, answer quickly, and review weak spots without dashboard chrome getting in the way.
             </p>
           </section>
 
-          <hr className="my-6 border-0 border-t border-border" />
+          <hr className="my-6 border-0 border-t border-stone-300 dark:border-stone-600" />
 
           <section className="flex flex-1 flex-col items-center justify-center">
         {isPlaying && (
