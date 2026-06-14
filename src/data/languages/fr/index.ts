@@ -48,6 +48,30 @@ const fr: LanguageConfig = {
         "vous",
         "ils/elles"
       ]
+    },
+    {
+      "key": "futur",
+      "label": "Futur simple",
+      "pronouns": [
+        "je",
+        "tu",
+        "il/elle",
+        "nous",
+        "vous",
+        "ils/elles"
+      ]
+    },
+    {
+      "key": "conditionnel",
+      "label": "Conditionnel présent",
+      "pronouns": [
+        "je",
+        "tu",
+        "il/elle",
+        "nous",
+        "vous",
+        "ils/elles"
+      ]
     }
   ],
   verbs: verbsData as unknown as Verb[],

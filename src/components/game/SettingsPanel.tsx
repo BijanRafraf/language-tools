@@ -8,6 +8,8 @@ const TENSES = [
   { key: 'present', label: 'Présent' },
   { key: 'imparfait', label: 'Imparfait' },
   { key: 'passe-compose', label: 'Passé composé' },
+  { key: 'futur', label: 'Futur simple' },
+  { key: 'conditionnel', label: 'Conditionnel présent' },
 ];
 
 const VERB_GROUPS: { key: VerbGroup; label: string }[] = [

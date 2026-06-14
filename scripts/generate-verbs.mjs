@@ -149,22 +149,30 @@ for (let i = 1; i < lines.length; i++) {
   const present      = {};
   const imparfait    = {};
   const passeCompose = {};
+  const futur        = {};
+  const conditionnel = {};
 
   PERSONS.forEach((person, idx) => {
     const pronoun = PRONOUNS[idx];
 
     const pForm = firstForm(row[`indicative|present|${person}`]);
     const iForm = firstForm(row[`indicative|imperfect|${person}`]);
+    const fForm = firstForm(row[`indicative|future|${person}`]);
+    const cForm = firstForm(row[`indicative|conditional|${person}`]);
 
-    if (pForm) present[pronoun]   = pForm;
-    if (iForm) imparfait[pronoun] = iForm;
+    if (pForm) present[pronoun]      = pForm;
+    if (iForm) imparfait[pronoun]    = iForm;
     if (pp)    passeCompose[pronoun] = `${auxForms[idx]} ${pp}`;
+    if (fForm) futur[pronoun]        = fForm;
+    if (cForm) conditionnel[pronoun] = cForm;
   });
 
   const conjugations = {};
   if (Object.keys(present).length)      conjugations['present']       = present;
   if (Object.keys(imparfait).length)    conjugations['imparfait']     = imparfait;
   if (Object.keys(passeCompose).length) conjugations['passe-compose'] = passeCompose;
+  if (Object.keys(futur).length)        conjugations['futur']         = futur;
+  if (Object.keys(conditionnel).length) conjugations['conditionnel']  = conditionnel;
 
   // Skip verbs with no usable conjugation data
   if (Object.keys(conjugations).length === 0) continue;
