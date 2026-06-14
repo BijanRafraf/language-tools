@@ -40,10 +40,9 @@ export default function ConjugationPage() {
       <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col bg-stone-50 dark:bg-stone-800 px-6 py-8 text-rose-950 dark:text-rose-100 shadow-panel sm:px-8 sm:py-10">
         <div className="border-l-4 border-rose-950 dark:border-rose-200 pl-6">
           <section className="max-w-2xl space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-400">Utility tool</p>
             <h1 className="text-4xl font-bold tracking-tight text-rose-950 dark:text-rose-100 sm:text-5xl">French Verb Conjugation</h1>
             <p className="max-w-xl text-sm leading-6 text-stone-400 sm:text-base">
-              Configure a narrow practice set, answer quickly, and review weak spots without dashboard chrome getting in the way.
+              Configure a narrow practice set, answer quickly, and review weak spots.
             </p>
           </section>
 

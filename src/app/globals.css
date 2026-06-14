@@ -16,7 +16,10 @@
       radial-gradient(circle at top, rgb(255 255 255 / 0.3), transparent 34%),
       linear-gradient(to bottom, rgb(255 255 255 / 0.14), transparent 24rem);
   }
-  h1,
+  h1 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: -0.02em;
+  }
   h2,
   h3,
   h4 {
