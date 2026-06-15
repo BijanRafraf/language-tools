@@ -48,6 +48,7 @@ export function AnswerInput({
   }, [cardKey]);
 
   const handleChange = (newValue: string) => {
+    if (disabled) return; // Prevent input changes when disabled
     const cursorPos = inputRef.current?.selectionStart ?? newValue.length;
     if (newValue.length === value.length + 1) {
       const addedChar = newValue[cursorPos - 1]?.toLowerCase();
@@ -97,17 +98,18 @@ export function AnswerInput({
           value={value}
           onChange={(e) => handleChange(e.target.value)}
           onKeyDown={handleKeyDown}
-          disabled={disabled}
+          readOnly={disabled}
           autoComplete="off"
           autoCorrect="off"
           autoCapitalize="off"
           spellCheck={false}
+          autoFocus
           placeholder={placeholder}
           className={cn(
             'flex-1 border border-stone-300 dark:border-stone-600 bg-stone-100 dark:bg-stone-700 px-4 py-3 text-lg text-rose-950 dark:text-rose-100 outline-none ring-offset-background transition-colors',
             'placeholder:text-stone-400/70 dark:placeholder:text-stone-400/70',
             'focus-visible:border-cyan-700 dark:focus-visible:border-cyan-400 focus-visible:ring-2 focus-visible:ring-cyan-700/40 dark:focus-visible:ring-cyan-400/40',
-            'disabled:cursor-not-allowed disabled:opacity-60'
+            disabled && 'cursor-not-allowed opacity-60'
           )}
         />
         <button
