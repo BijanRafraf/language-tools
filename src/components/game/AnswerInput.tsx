@@ -39,8 +39,8 @@ export function AnswerInput({
 
   // Auto-focus whenever a new card appears
   useEffect(() => {
-    if (!disabled) inputRef.current?.focus();
-  }, [cardKey, disabled]);
+    inputRef.current?.focus();
+  }, [cardKey]);
 
   // Clear suggestions on new card
   useEffect(() => {
@@ -98,7 +98,6 @@ export function AnswerInput({
           value={value}
           onChange={(e) => handleChange(e.target.value)}
           onKeyDown={handleKeyDown}
-          readOnly={disabled}
           autoComplete="off"
           autoCorrect="off"
           autoCapitalize="off"
