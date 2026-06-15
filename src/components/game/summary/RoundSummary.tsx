@@ -3,7 +3,6 @@
 import type { PromptResult } from '@/store/gameStore';
 import { OverallScore } from './OverallScore';
 import { PronounBreakdown } from './PronounBreakdown';
-import { GroupBreakdown } from './GroupBreakdown';
 import { MissedVerbs } from './MissedVerbs';
 
 interface Props {
@@ -31,7 +30,6 @@ export function RoundSummary({
       </div>
       <OverallScore results={results} longestStreak={longestStreak} />
       <PronounBreakdown results={results} />
-      <GroupBreakdown results={results} />
       <MissedVerbs results={results} showEnglish={showEnglish} />
       <div className="flex flex-col gap-3 pt-2 sm:flex-row">
         <button

@@ -4,6 +4,7 @@ import { VerbGroup } from '@/data/types';
 
 export type RoundSize = 10 | 20 | 50 | 'indefinite';
 export type Theme = 'light' | 'dark' | 'system';
+export type FrequencyMode = 'all' | 'most-frequent' | 'range';
 
 export interface SettingsState {
   tenses: string[];
@@ -12,9 +13,13 @@ export interface SettingsState {
   roundSize: RoundSize;
   theme: Theme;
   showEnglish: boolean;
+  frequencyMode: FrequencyMode;
+  frequencyTopN: number;
+  frequencyRangeMin: number;
+  frequencyRangeMax: number;
   updateSettings: (
     partial: Partial<
-      Pick<SettingsState, 'tenses' | 'verbGroups' | 'pronouns' | 'roundSize' | 'showEnglish'>
+      Pick<SettingsState, 'tenses' | 'verbGroups' | 'pronouns' | 'roundSize' | 'showEnglish' | 'frequencyMode' | 'frequencyTopN' | 'frequencyRangeMin' | 'frequencyRangeMax'>
     >
   ) => void;
   setTheme: (theme: Theme) => void;
@@ -32,6 +37,10 @@ export const useSettingsStore = create<SettingsState>()(
       roundSize: 10 as RoundSize,
       theme: 'system' as Theme,
       showEnglish: true,
+      frequencyMode: 'all' as FrequencyMode,
+      frequencyTopN: 10,
+      frequencyRangeMin: 20,
+      frequencyRangeMax: 50,
       updateSettings: (partial) => set(partial),
       setTheme: (theme) => set({ theme }),
     }),

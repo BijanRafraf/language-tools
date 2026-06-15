@@ -1,4 +1,5 @@
 import { Verb, VerbGroup } from '@/data/types';
+import type { FrequencyMode } from '@/store/settingsStore';
 
 export interface GameCard {
   verb: Verb;
@@ -10,12 +11,35 @@ export function buildDeck(
   verbs: Verb[],
   tenses: string[],
   pronouns: string[],
-  verbGroups: VerbGroup[]
+  verbGroups: VerbGroup[],
+  frequencyMode: FrequencyMode = 'all',
+  frequencyTopN: number = 10,
+  frequencyRangeMin: number = 20,
+  frequencyRangeMax: number = 50
 ): GameCard[] {
-  const filtered =
+  // Sort by frequency (descending) and assign ranks
+  const sortedByFreq = [...verbs].sort((a, b) => (b.frequency ?? 0) - (a.frequency ?? 0));
+  const frequencyRank = new Map<string, number>();
+  sortedByFreq.forEach((v, i) => frequencyRank.set(v.infinitive, i + 1));
+
+  // Filter by verb groups
+  let filtered =
     verbGroups.length === 0
       ? verbs
       : verbs.filter((v) => verbGroups.includes(v.group));
+
+  // Filter by frequency mode
+  if (frequencyMode !== 'all') {
+    filtered = filtered.filter((v) => {
+      const rank = frequencyRank.get(v.infinitive) ?? Infinity;
+      if (frequencyMode === 'most-frequent') {
+        return rank >= 1 && rank <= frequencyTopN;
+      } else if (frequencyMode === 'range') {
+        return rank >= frequencyRangeMin && rank <= frequencyRangeMax;
+      }
+      return true;
+    });
+  }
 
   const cards: GameCard[] = [];
   for (const verb of filtered) {

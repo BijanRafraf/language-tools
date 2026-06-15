@@ -12,9 +12,6 @@
   }
   body {
     @apply bg-stone-300 dark:bg-stone-900 text-rose-950 dark:text-rose-100;
-    background-image:
-      radial-gradient(circle at top, rgb(255 255 255 / 0.3), transparent 34%),
-      linear-gradient(to bottom, rgb(255 255 255 / 0.14), transparent 24rem);
   }
   h1 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -29,5 +26,14 @@
   ::selection {
     background: color-mix(in oklch, rgb(240 249 255) 55%, white);
     color: rgb(79 70 229);
+  }
+  /* Hide number input spinners (increment/decrement arrows) */
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
   }
 }

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useGameStore, PromptResult } from '@/store/gameStore';
 import { useSettingsStore } from '@/store/settingsStore';
+import type { VerbGroup } from '@/data/types';
 import { checkAnswer } from '@/lib/conjugationEngine';
 import { buildDeck, weightedShuffle } from '@/lib/deck';
 import fr from '@/data/languages/fr/index';
@@ -29,7 +30,7 @@ export function useGameRound() {
     resetGame,
   } = useGameStore();
 
-  const { tenses, verbGroups, pronouns, roundSize } =
+  const { tenses, pronouns, roundSize, frequencyMode, frequencyTopN, frequencyRangeMin, frequencyRangeMax } =
     useSettingsStore();
 
   const [inputValue, setInputValue] = useState('');
@@ -62,8 +63,10 @@ export function useGameRound() {
 
   const startNewRound = useCallback(() => {
     const indefinite = roundSize === 'indefinite';
+    // Always include all verb groups (classification pending accuracy fix)
+    const allVerbGroups: VerbGroup[] = ['er', 'ir', 're', 'irregular'];
     let cards = weightedShuffle(
-      buildDeck(fr.verbs, tenses, pronouns, verbGroups),
+      buildDeck(fr.verbs, tenses, pronouns, allVerbGroups, frequencyMode, frequencyTopN, frequencyRangeMin, frequencyRangeMax),
       (card) => getVerbFrequencyWeight(card.verb.frequency)
     );
     if (!indefinite && typeof roundSize === 'number') {
@@ -72,7 +75,7 @@ export function useGameRound() {
     // Guard: nothing to play
     if (cards.length === 0) return;
     startRound(cards, indefinite);
-  }, [tenses, verbGroups, pronouns, roundSize, startRound]);
+  }, [tenses, pronouns, roundSize, frequencyMode, frequencyTopN, frequencyRangeMin, frequencyRangeMax, startRound]);
 
   const handleSubmit = useCallback(
     (answer: string) => {
@@ -113,7 +116,7 @@ export function useGameRound() {
     : `${answeredCount} / ${totalCards}`;
 
   const deckAvailable =
-    buildDeck(fr.verbs, tenses, pronouns, verbGroups).length > 0;
+    buildDeck(fr.verbs, tenses, pronouns, ['er', 'ir', 're', 'irregular'], frequencyMode, frequencyTopN, frequencyRangeMin, frequencyRangeMax).length > 0;
 
   return {
     phase,
