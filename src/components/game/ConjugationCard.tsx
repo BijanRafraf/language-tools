@@ -11,13 +11,14 @@ interface Props {
   /** Increments each time a new card is shown — triggers slide-in. */
   cardKey: number;
   outcome: AnswerOutcome | null;
+  showEnglish?: boolean;
 }
 
 function tenseLabelFor(tenseKey: string): string {
   return fr.tenses.find((t) => t.key === tenseKey)?.label ?? tenseKey;
 }
 
-export function ConjugationCard({ card, cardKey, outcome }: Props) {
+export function ConjugationCard({ card, cardKey, outcome, showEnglish = true }: Props) {
   const controls = useAnimation();
 
   // Slide in when card changes
@@ -76,7 +77,7 @@ export function ConjugationCard({ card, cardKey, outcome }: Props) {
         <span className="text-2xl font-semibold text-rose-950/85 dark:text-rose-200/85">
           {card.verb.infinitive}
         </span>
-        {card.verb.english && (
+        {showEnglish && card.verb.english && (
           <span className="text-sm italic text-stone-400">
             {card.verb.english}
           </span>

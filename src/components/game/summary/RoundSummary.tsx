@@ -11,6 +11,7 @@ interface Props {
   longestStreak: number;
   onPlayAgain: () => void;
   onChangeSettings: () => void;
+  showEnglish?: boolean;
 }
 
 export function RoundSummary({
@@ -18,6 +19,7 @@ export function RoundSummary({
   longestStreak,
   onPlayAgain,
   onChangeSettings,
+  showEnglish = true,
 }: Props) {
   return (
     <div className="w-full max-w-4xl space-y-4">
@@ -30,7 +32,7 @@ export function RoundSummary({
       <OverallScore results={results} longestStreak={longestStreak} />
       <PronounBreakdown results={results} />
       <GroupBreakdown results={results} />
-      <MissedVerbs results={results} />
+      <MissedVerbs results={results} showEnglish={showEnglish} />
       <div className="flex flex-col gap-3 pt-2 sm:flex-row">
         <button
           type="button"

@@ -56,7 +56,7 @@ function CheckboxRow({
 }
 
 export function SettingsPanel({ onStart, deckAvailable }: Props) {
-  const { tenses, verbGroups, pronouns, roundSize, updateSettings } =
+  const { tenses, verbGroups, pronouns, roundSize, showEnglish, updateSettings } =
     useSettingsStore();
 
   function toggleItem<T>(arr: T[], item: T): T[] {
@@ -127,6 +127,19 @@ export function SettingsPanel({ onStart, deckAvailable }: Props) {
               }
             />
           ))}
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-stone-400">
+          Display options
+        </legend>
+        <div className="space-y-2">
+          <CheckboxRow
+            checked={showEnglish}
+            label="Show English translations"
+            onChange={() => updateSettings({ showEnglish: !showEnglish })}
+          />
         </div>
       </fieldset>
 

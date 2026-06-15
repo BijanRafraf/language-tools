@@ -1,6 +1,7 @@
 'use client';
 
 import { useGameRound } from '@/hooks/useGameRound';
+import { useSettingsStore } from '@/store/settingsStore';
 import { ConjugationCard } from '@/components/game/ConjugationCard';
 import { AnswerInput } from '@/components/game/AnswerInput';
 import { FeedbackBanner } from '@/components/game/FeedbackBanner';
@@ -10,6 +11,7 @@ import { SettingsPanel } from '@/components/game/SettingsPanel';
 import { RoundSummary } from '@/components/game/summary/RoundSummary';
 
 export default function ConjugationPage() {
+  const showEnglish = useSettingsStore((state) => state.showEnglish);
   const {
     phase,
     currentCard,
@@ -73,6 +75,7 @@ export default function ConjugationPage() {
               card={currentCard}
               cardKey={results.length}
               outcome={lastResult?.outcome ?? null}
+              showEnglish={showEnglish}
             />
             <AnswerInput
               value={isRetypeMode ? retypeValue : inputValue}
@@ -103,6 +106,7 @@ export default function ConjugationPage() {
               startNewRound();
             }}
             onChangeSettings={resetGame}
+            showEnglish={showEnglish}
           />
         )}
           </section>

@@ -4,6 +4,7 @@ import type { PromptResult } from '@/store/gameStore';
 
 interface Props {
   results: PromptResult[];
+  showEnglish?: boolean;
 }
 
 interface MissedEntry {
@@ -36,7 +37,7 @@ function computeMissed(results: PromptResult[]): MissedEntry[] {
   );
 }
 
-export function MissedVerbs({ results }: Props) {
+export function MissedVerbs({ results, showEnglish = true }: Props) {
   const missed = computeMissed(results);
   if (missed.length === 0) {
     return (
@@ -66,7 +67,7 @@ export function MissedVerbs({ results }: Props) {
               <span className="font-semibold text-rose-950 dark:text-rose-100">
                 {entry.infinitive}
               </span>
-              {entry.english && (
+              {showEnglish && entry.english && (
                 <span className="text-xs italic text-stone-400">
                   {entry.english}
                 </span>
