@@ -37,10 +37,10 @@ export function AnswerInput({
     suggestions: string[];
   } | null>(null);
 
-  // Auto-focus whenever a new card appears
+  // Maintain focus through prop changes (prevents mobile keyboard from closing on re-render)
   useEffect(() => {
     inputRef.current?.focus();
-  }, [cardKey]);
+  });
 
   // Clear suggestions on new card
   useEffect(() => {

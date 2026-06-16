@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useGameRound } from '@/hooks/useGameRound';
 import { useSettingsStore } from '@/store/settingsStore';
 import { ConjugationCard } from '@/components/game/ConjugationCard';
@@ -36,6 +37,16 @@ export default function ConjugationPage() {
   } = useGameRound();
 
   const isPlaying = phase === 'playing' || phase === 'feedback';
+
+  // Auto-advance to next verb when answer is correct
+  useEffect(() => {
+    if (phase === 'feedback' && lastResult?.outcome === 'correct') {
+      const timer = setTimeout(() => {
+        nextCard();
+      }, 300); // Brief delay so user sees the correct indication
+      return () => clearTimeout(timer);
+    }
+  }, [phase, lastResult?.outcome, nextCard]);
 
   return (
     <div className="flex flex-1 px-4 py-8 sm:px-6 sm:py-12">
@@ -87,7 +98,7 @@ export default function ConjugationPage() {
                 isRetypeMode ? 'Type the correct answer…' : 'Type your answer…'
               }
             />
-            {phase === 'feedback' && lastResult && (
+            {phase === 'feedback' && lastResult && lastResult.outcome !== 'correct' && (
               <FeedbackBanner
                 result={lastResult}
                 onContinue={nextCard}
